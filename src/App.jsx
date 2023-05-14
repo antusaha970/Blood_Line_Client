@@ -1,7 +1,13 @@
+import { Route, Routes } from "react-router-dom";
+import { Home, NavBar } from "./components/index";
+
 function App() {
   return (
     <>
-      <h2>Blood line</h2>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </>
   );
 }

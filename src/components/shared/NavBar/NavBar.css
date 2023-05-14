@@ -1,0 +1,19 @@
+.nav-link {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #0B0B0B;
+    padding-right: 10px;
+}
+
+#menuBar a.active {
+    color: red;
+  }
+
+@media screen and (max-width: 768px) {
+    .nav-link {
+        color: #000;
+    }
+}
