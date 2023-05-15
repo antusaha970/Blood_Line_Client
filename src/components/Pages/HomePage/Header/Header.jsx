@@ -3,7 +3,7 @@ import headerImg from "../../../../assets/header.jpg";
 import styled from "@emotion/styled";
 import { CustomBtn1 } from "../../../shared/NavBar/NavBar";
 
-const CustomImg = styled("img")`
+export const CustomImg = styled("img")`
   width: 100%;
   height: 400px;
 `;
@@ -19,7 +19,7 @@ export const HeaderTitle = styled(Typography)`
   color: #000000;
 `;
 
-const HeaderSubTitle = styled(Typography)`
+export const HeaderSubTitle = styled(Typography)`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
