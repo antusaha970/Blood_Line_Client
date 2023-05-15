@@ -1,10 +1,11 @@
 import { Container } from "@mui/material";
-import { Header } from "../index";
+import { CallToAction, Header } from "../../../index/index";
 
 const Home = () => {
   return (
     <Container maxWidth="lg">
       <Header />
+      <CallToAction />
     </Container>
   );
 };

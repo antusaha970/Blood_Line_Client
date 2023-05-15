@@ -29,7 +29,7 @@ export const CustomBtn1 = styled(Button)`
   line-height: 22px;
 `;
 
-const CustomBtn2 = styled(Button)`
+export const CustomBtn2 = styled(Button)`
   background: #000000;
   color: white;
   box-shadow: none;

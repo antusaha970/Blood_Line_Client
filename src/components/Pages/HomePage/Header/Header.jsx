@@ -8,7 +8,7 @@ const CustomImg = styled("img")`
   height: 400px;
 `;
 
-const HeaderTitle = styled(Typography)`
+export const HeaderTitle = styled(Typography)`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
