@@ -59,12 +59,9 @@ const CallToAction = () => {
             Register Your Self as a donor
           </CustomTitle>
           <Description variant="p" component="p">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-            consequuntur nemo minus earum eos ad dolores ipsa modi, molestiae
-            officia reiciendis possimus, hic quasi facilis voluptatibus enim.
-            Officiis a unde, atque dolor quidem cumque. Accusamus consequuntur
-            unde pariatur maiores impedit earum aliquam neque, ea delectus cum,
-            itaque dolore harum dicta?
+            Welcome! Take a moment to register yourself as a blood donor. Your
+            simple act of compassion can save lives. Join our community and make
+            a difference with just a click of a button.
             <CustomBtn1
               sx={{
                 display: "block",
@@ -80,12 +77,9 @@ const CallToAction = () => {
             Find Blood from registered donors
           </CustomTitle>
           <Description component="p">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-            consequuntur nemo minus earum eos ad dolores ipsa modi, molestiae
-            officia reiciendis possimus, hic quasi facilis voluptatibus enim.
-            Officiis a unde, atque dolor quidem cumque. Accusamus consequuntur
-            unde pariatur maiores impedit earum aliquam neque, ea delectus cum,
-            itaque dolore harum dicta?
+            Discover a network of registered blood donors ready to help in times
+            of need. Connect with potential donors effortlessly and ensure
+            timely access to life-saving blood. Find your match now.
             <CustomBtn2
               sx={{
                 display: "block",

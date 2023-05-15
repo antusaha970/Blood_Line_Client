@@ -1,6 +1,6 @@
 import { Box, Stack } from "@mui/material";
 import { CustomImg, HeaderSubTitle, HeaderTitle } from "../Header/Header";
-import missionImg from "../../../../assets/header.jpg";
+import missionImg from "../../../../assets/mission.jpg";
 const OurMission = () => {
   return (
     <Box
@@ -20,17 +20,23 @@ const OurMission = () => {
       >
         <Box flex={1}>
           <HeaderSubTitle component="p" variant="p">
-            Welcome to our life-saving platform, where you have the power to
-            make a profound impact. Join us in the noble cause of donating blood
-            and become a hero in someone&apos;s story. By registering as a blood
-            donor today, you can offer the gift of life to those in desperate
-            need. Your selfless act has the potential to change the course of
-            someone&apos;s life, providing them with a second chance, renewed
-            hope, and precious time with their loved ones. Take action now and
-            be a part of our compassionate community dedicated to saving lives.
-            Together, let&apos;s make a difference and embrace the extraordinary
-            power we hold within us. Donate blood, because your generosity can
-            truly save a life.
+            At Behind the{" "}
+            <font
+              color="red"
+              style={{ fontWeight: "bold", textTransform: "uppercase" }}
+            >
+              Bloodline
+            </font>
+            , our unwavering mission is to establish a robust network that
+            seamlessly connects blood donors with those in need, ensuring a
+            convenient and comfortable experience. By leveraging our website, we
+            aim to curate and maintain an extensive database of active blood
+            donors, facilitating swift access to life-saving blood when it
+            matters most. Our commitment lies in simplifying the process of
+            seeking blood, fostering a community where lives are saved through
+            efficient and reliable connections. Together, we strive to make a
+            tangible difference in the lives of individuals facing critical
+            medical situations.
           </HeaderSubTitle>
         </Box>
         <Box flex={1}>
