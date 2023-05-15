@@ -18,7 +18,7 @@ const LogoText = styled(Typography)`
   font-weight: 800;
 `;
 
-const CustomBtn1 = styled(Button)`
+export const CustomBtn1 = styled(Button)`
   background: red;
   color: white;
   box-shadow: none;

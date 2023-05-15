@@ -1,5 +1,12 @@
+import { Container } from "@mui/material";
+import { Header } from "../index";
+
 const Home = () => {
-  return <h1>Home</h1>;
+  return (
+    <Container maxWidth="lg">
+      <Header />
+    </Container>
+  );
 };
 
 export default Home;
