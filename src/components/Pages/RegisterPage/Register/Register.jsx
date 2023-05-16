@@ -11,10 +11,11 @@ import { Loader2 } from "../../../index";
 import { useDispatch } from "react-redux";
 import { addUserInfo } from "../../../../redux/slices/userSlice/userSlice";
 import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
-const RegisterBox = styled(Box)`
+export const RegisterBox = styled(Box)`
   width: 570px;
-  height: 457px;
+  min-height: 457px;
   background: #ffffff;
   border: 1px solid #ababab;
   border-radius: 4px;
@@ -29,7 +30,7 @@ const RegisterBox = styled(Box)`
   gap: 15px;
 `;
 
-const RegisterTitle = styled(Typography)`
+export const RegisterTitle = styled(Typography)`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
@@ -69,11 +70,14 @@ const Register = () => {
   const handleRegister = () => {
     signInWithRedirect(auth, provider);
   };
-  if (user !== null && loading !== true && error !== null) {
-    const { displayName, email, photoURL } = user;
-    dispatch(addUserInfo({ displayName, email, photoURL }));
-    navigate("/addition_info");
-  }
+  useEffect(() => {
+    if (user !== null && loading !== true && error !== null) {
+      const { displayName: name, email, photoURL } = user;
+      dispatch(addUserInfo({ name, email, photoURL }));
+      navigate("/addition_info");
+    }
+  }, []);
+
   if (error) {
     alert(error.message);
   }

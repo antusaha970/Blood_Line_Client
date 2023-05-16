@@ -1,5 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, Loader, NavBar, Register } from "./components/index";
+import {
+  AdditionalInfo,
+  Home,
+  Loader,
+  NavBar,
+  Register,
+} from "./components/index";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -23,6 +29,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/addition_info" element={<AdditionalInfo />} />
           </Routes>
         </>
       )}
