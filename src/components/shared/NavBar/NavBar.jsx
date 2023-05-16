@@ -9,7 +9,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./NavBar.css";
 import { useState } from "react";
 
@@ -27,6 +27,9 @@ export const CustomBtn1 = styled(Button)`
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
+  & a {
+    color: white;
+  }
 `;
 
 export const CustomBtn2 = styled(Button)`
@@ -38,6 +41,9 @@ export const CustomBtn2 = styled(Button)`
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
+  & a {
+    color: white;
+  }
 `;
 
 const NavBar = () => {
@@ -75,9 +81,11 @@ const NavBar = () => {
                 Contact Us
               </NavLink>
             </div>
-            <CustomBtn1 variant="contained">Register</CustomBtn1>
+            <CustomBtn1 variant="contained">
+              <Link to="/register">Register</Link>
+            </CustomBtn1>
             <CustomBtn2 variant="contained" color="secondary">
-              Seek Blood
+              <Link to="/find_blood">Seek Blood</Link>
             </CustomBtn2>
           </Stack>
         </Box>
@@ -138,9 +146,11 @@ const NavBar = () => {
                 >
                   Contact Us
                 </NavLink>
-                <CustomBtn1 variant="contained">Register</CustomBtn1>
+                <Link to="/register">
+                  <CustomBtn1 variant="contained">Register</CustomBtn1>
+                </Link>
                 <CustomBtn2 variant="contained" color="secondary">
-                  Seek Blood
+                  <Link to="/find_blood">Seek Blood</Link>
                 </CustomBtn2>
               </Stack>
             </div>

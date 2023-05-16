@@ -2,6 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import headerImg from "../../../../assets/header.jpg";
 import styled from "@emotion/styled";
 import { CustomBtn1 } from "../../../shared/NavBar/NavBar";
+import { Link } from "react-router-dom";
 
 export const CustomImg = styled("img")`
   width: 100%;
@@ -59,14 +60,16 @@ const Header = () => {
           let&apos;s make a difference and embrace the extraordinary power we
           hold within us. Donate blood, because your generosity can truly save a
           life.
-          <CustomBtn1
-            variant="contained"
-            sx={{
-              display: "block",
-            }}
-          >
-            Register yourself
-          </CustomBtn1>
+          <Link to="/register">
+            <CustomBtn1
+              variant="contained"
+              sx={{
+                display: "block",
+              }}
+            >
+              Register yourself
+            </CustomBtn1>
+          </Link>
         </HeaderSubTitle>
       </Box>
     </Stack>

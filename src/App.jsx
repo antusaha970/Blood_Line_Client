@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, Loader, NavBar } from "./components/index";
+import { Home, Loader, NavBar, Register } from "./components/index";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </>
       )}

@@ -2,6 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import { HeaderTitle } from "../Header/Header";
 import styled from "@emotion/styled";
 import { CustomBtn1, CustomBtn2 } from "../../../shared/NavBar/NavBar";
+import { Link } from "react-router-dom";
 
 const CustomTitle = styled(Typography)`
   font-family: "Montserrat";
@@ -62,14 +63,16 @@ const CallToAction = () => {
             Welcome! Take a moment to register yourself as a blood donor. Your
             simple act of compassion can save lives. Join our community and make
             a difference with just a click of a button.
-            <CustomBtn1
-              sx={{
-                display: "block",
-              }}
-              variant="contained"
-            >
-              Register
-            </CustomBtn1>
+            <Link to="/register">
+              <CustomBtn1
+                variant="contained"
+                sx={{
+                  display: "block",
+                }}
+              >
+                Register yourself
+              </CustomBtn1>
+            </Link>
           </Description>
         </Box1>
         <Box2 flex={1}>
@@ -87,7 +90,7 @@ const CallToAction = () => {
               variant="contained"
               color="secondary"
             >
-              Find blood
+              <Link to="/find_blood">Find blood</Link>
             </CustomBtn2>
           </Description>
         </Box2>
