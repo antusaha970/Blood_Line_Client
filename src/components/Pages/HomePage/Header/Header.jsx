@@ -44,7 +44,7 @@ const Header = () => {
       <Box flex={1}>
         <CustomImg src={headerImg} alt="Header image" />
       </Box>
-      <Box flex={1}>
+      <Box flex={1} component="main">
         <HeaderTitle component="h1" variant="h1">
           Donate <font color="red">Blood</font> Save Life
         </HeaderTitle>
