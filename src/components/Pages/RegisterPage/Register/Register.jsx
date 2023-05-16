@@ -8,6 +8,9 @@ import {
   signInWithRedirect,
 } from "../../../../firebase/firebase.config";
 import { Loader2 } from "../../../index";
+import { useDispatch } from "react-redux";
+import { addUserInfo } from "../../../../redux/slices/userSlice/userSlice";
+import { useNavigate } from "react-router";
 
 const RegisterBox = styled(Box)`
   width: 570px;
@@ -59,13 +62,17 @@ const RegisterButtonText = styled(Box)`
 `;
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
 
   const handleRegister = () => {
     signInWithRedirect(auth, provider);
   };
-  if (!user) {
-    console.log(user);
+  if (user !== null && loading !== true && error !== null) {
+    const { displayName, email, photoURL } = user;
+    dispatch(addUserInfo({ displayName, email, photoURL }));
+    navigate("/addition_info");
   }
   if (error) {
     alert(error.message);
