@@ -1,6 +1,13 @@
 import styled from "@emotion/styled";
 import googleIcon from "../../../../assets/googleIcon.png";
 import { Box, Container, Typography } from "@mui/material";
+import { useAuthState } from "react-firebase-hooks/auth";
+import {
+  auth,
+  provider,
+  signInWithRedirect,
+} from "../../../../firebase/firebase.config";
+import { Loader2 } from "../../../index";
 
 const RegisterBox = styled(Box)`
   width: 570px;
@@ -52,6 +59,18 @@ const RegisterButtonText = styled(Box)`
 `;
 
 const Register = () => {
+  const [user, loading, error] = useAuthState(auth);
+
+  const handleRegister = () => {
+    signInWithRedirect(auth, provider);
+  };
+  if (!user) {
+    console.log(user);
+  }
+  if (error) {
+    alert(error.message);
+  }
+
   return (
     <Box
       component="section"
@@ -78,28 +97,34 @@ const Register = () => {
           <font color="black">Blood</font>-<font color="red">Line</font>
         </Typography>
         <RegisterBox>
-          <RegisterTitle>Register With Google</RegisterTitle>
+          <RegisterTitle>
+            {loading ? "Please wait ..." : "Register With Google"}
+          </RegisterTitle>
           <Box>
-            <RegisterButton component="button">
-              <Box
-                sx={{
-                  position: "absolute",
-                  left: "0",
-                }}
-              >
-                <img
-                  src={googleIcon}
-                  alt="google icon"
-                  style={{
-                    width: "50px",
-                    height: "50px",
+            {loading ? (
+              <Loader2 />
+            ) : (
+              <RegisterButton component="button" onClick={handleRegister}>
+                <Box
+                  sx={{
+                    position: "absolute",
+                    left: "0",
                   }}
-                />
-              </Box>
-              <RegisterButtonText component="p">
-                Continue With Google
-              </RegisterButtonText>
-            </RegisterButton>
+                >
+                  <img
+                    src={googleIcon}
+                    alt="google icon"
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                    }}
+                  />
+                </Box>
+                <RegisterButtonText component="p">
+                  Continue With Google
+                </RegisterButtonText>
+              </RegisterButton>
+            )}
           </Box>
         </RegisterBox>
       </Container>
