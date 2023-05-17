@@ -13,6 +13,8 @@ import { Link, NavLink } from "react-router-dom";
 import "./NavBar.css";
 import { useState } from "react";
 import { signOut, auth } from "../../../firebase/firebase.config";
+import { useDispatch, useSelector } from "react-redux";
+import { removeUserInfo } from "../../../redux/slices/userSlice/userSlice";
 
 const LogoText = styled(Typography)`
   font-size: 30px;
@@ -57,6 +59,12 @@ const NavBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const dispatch = useDispatch();
+  const handleSignOut = () => {
+    signOut(auth);
+    dispatch(removeUserInfo());
+  };
   return (
     <Container maxWidth="lg">
       <Stack
@@ -88,7 +96,7 @@ const NavBar = () => {
             <CustomBtn2 variant="contained" color="secondary">
               <Link to="/find_blood">Seek Blood</Link>
             </CustomBtn2>
-            <Button onClick={() => signOut(auth)}>Sign Out</Button>
+            {isLoggedIn && <Button onClick={handleSignOut}>Sign Out</Button>}
           </Stack>
         </Box>
         <Box display={{ lg: "none", md: "none", sm: "block", xs: "block" }}>
@@ -154,6 +162,9 @@ const NavBar = () => {
                 <CustomBtn2 variant="contained" color="secondary">
                   <Link to="/find_blood">Seek Blood</Link>
                 </CustomBtn2>
+                {isLoggedIn && (
+                  <Button onClick={handleSignOut}>Sign Out</Button>
+                )}
               </Stack>
             </div>
           </Menu>
