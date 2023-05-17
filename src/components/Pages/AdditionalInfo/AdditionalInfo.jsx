@@ -13,11 +13,13 @@ import { RegisterBox, RegisterTitle } from "../RegisterPage/Register/Register";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { addAdditionalInfo } from "../../../redux/slices/userSlice/userSlice";
-import client from "../../../API/API";
+import { useNavigate } from "react-router";
+// import client from "../../../API/API";
 
 const AdditionalInfo = () => {
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
@@ -31,12 +33,13 @@ const AdditionalInfo = () => {
   });
   const onSubmit = async (data) => {
     dispatch(addAdditionalInfo(data));
-    try {
-      const { data } = await client.post("/donor/create", user);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+    navigate("/user_profile");
+    // try {
+    //   const { data } = await client.post("/donor/create", user);
+    //   console.log(data);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   return (
     <Box

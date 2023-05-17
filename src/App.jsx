@@ -4,7 +4,9 @@ import {
   Home,
   Loader,
   NavBar,
+  PrivateRoute,
   Register,
+  UserProfile,
 } from "./components/index";
 import { useEffect, useState } from "react";
 
@@ -29,7 +31,22 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/addition_info" element={<AdditionalInfo />} />
+            <Route
+              path="/addition_info"
+              element={
+                <PrivateRoute>
+                  <AdditionalInfo />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/user_profile"
+              element={
+                <PrivateRoute>
+                  <UserProfile />
+                </PrivateRoute>
+              }
+            />
           </Routes>
         </>
       )}
