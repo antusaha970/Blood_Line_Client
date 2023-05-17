@@ -72,8 +72,8 @@ const Register = () => {
   };
   useEffect(() => {
     if (user !== null && loading !== true) {
-      const { displayName: name, email, photoURL } = user;
-      dispatch(addUserInfo({ name, email, photoURL }));
+      const { displayName: name, email, photoURL: imageURL } = user;
+      dispatch(addUserInfo({ name, email, imageURL }));
       navigate("/addition_info");
     }
   }, [user, loading]);

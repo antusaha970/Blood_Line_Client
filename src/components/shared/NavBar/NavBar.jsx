@@ -91,7 +91,8 @@ const NavBar = () => {
               </NavLink>
             </div>
             <CustomBtn1 variant="contained">
-              <Link to="/register">Register</Link>
+              {!isLoggedIn && <Link to="/register">Register</Link>}
+              {isLoggedIn && <Link to="/user_profile">View Profile</Link>}
             </CustomBtn1>
             <CustomBtn2 variant="contained" color="secondary">
               <Link to="/find_blood">Seek Blood</Link>

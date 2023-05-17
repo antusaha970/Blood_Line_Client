@@ -68,7 +68,7 @@ const UserProfile = () => {
       <Container maxWidth="lg">
         <ProfileBox>
           <Box>
-            <ProfilePicture src={user.photoURL} alt="your profile picture" />
+            <ProfilePicture src={user.imageURL} alt="your profile picture" />
           </Box>
           {editState ? (
             <Box

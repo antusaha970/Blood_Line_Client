@@ -3,6 +3,7 @@ import { HeaderTitle } from "../Header/Header";
 import styled from "@emotion/styled";
 import { CustomBtn1, CustomBtn2 } from "../../../shared/NavBar/NavBar";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const CustomTitle = styled(Typography)`
   font-family: "Montserrat";
@@ -37,6 +38,7 @@ const Box2 = styled(Box)`
 `;
 
 const CallToAction = () => {
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   return (
     <Box
       component="section"
@@ -57,20 +59,24 @@ const CallToAction = () => {
       >
         <Box1 flex={1}>
           <CustomTitle variant="h5" component="p">
-            Register Your Self as a donor
+            {isLoggedIn
+              ? `View profile to change your info`
+              : `Register Your Self as a donor`}
           </CustomTitle>
           <Description variant="p" component="p">
-            Welcome! Take a moment to register yourself as a blood donor. Your
+            {isLoggedIn
+              ? `Thank you for registering as a blood donor! Your selfless act of compassion and generosity has the power to save lives and bring hope to those in need. By joining our community, you have taken a crucial step towards making a positive impact and making a difference in the lives of others.`
+              : `Welcome! Take a moment to register yourself as a blood donor. Your
             simple act of compassion can save lives. Join our community and make
-            a difference with just a click of a button.
-            <Link to="/register">
+            a difference with just a click of a button.`}
+            <Link to={isLoggedIn ? "/user_profile" : "/register"}>
               <CustomBtn1
                 variant="contained"
                 sx={{
                   display: "block",
                 }}
               >
-                Register yourself
+                {isLoggedIn ? "View Your Profile" : "Register yourself"}
               </CustomBtn1>
             </Link>
           </Description>

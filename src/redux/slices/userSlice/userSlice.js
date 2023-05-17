@@ -12,6 +12,7 @@ export const userSlice = createSlice({
     addUserInfo: (state,action) => {
         state.user = action.payload
         state.isLoggedIn = true
+        // state.user.email = "xyz@gmail.com"
     },
     addAdditionalInfo: (state,action) => {
         const {number,location,bloodGroup,name} = action.payload;

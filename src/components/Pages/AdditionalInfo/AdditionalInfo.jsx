@@ -14,7 +14,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { addAdditionalInfo } from "../../../redux/slices/userSlice/userSlice";
 import { useNavigate } from "react-router";
-// import client from "../../../API/API";
+import client from "../../../API/API";
 
 const AdditionalInfo = () => {
   const user = useSelector((state) => state.user.user);
@@ -31,14 +31,18 @@ const AdditionalInfo = () => {
       bloodGroup: "",
     },
   });
-  const onSubmit = async (data) => {
-    dispatch(addAdditionalInfo(data));
-    navigate("/user_profile");
+  const onSubmit = async (userData) => {
+    dispatch(addAdditionalInfo(userData));
     // try {
-    //   const { data } = await client.post("/donor/create", user);
-    //   console.log(data);
+    //   console.log(user);
+    //   const { data } = await client.post("/donner/create", user);
+    //   if (data.status === "success") {
+    //     alert("Registration successfully completed");
+    //     navigate("/");
+    //   }
     // } catch (error) {
     //   console.log(error);
+    //   alert(error.response.data.message);
     // }
   };
   return (

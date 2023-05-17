@@ -3,6 +3,7 @@ import headerImg from "../../../../assets/header.jpg";
 import styled from "@emotion/styled";
 import { CustomBtn1 } from "../../../shared/NavBar/NavBar";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const CustomImg = styled("img")`
   width: 100%;
@@ -32,6 +33,7 @@ export const HeaderSubTitle = styled(Typography)`
 `;
 
 const Header = () => {
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   return (
     <Stack
       direction={{ sm: "column", md: "row" }}
@@ -60,14 +62,14 @@ const Header = () => {
           let&apos;s make a difference and embrace the extraordinary power we
           hold within us. Donate blood, because your generosity can truly save a
           life.
-          <Link to="/register">
+          <Link to={isLoggedIn ? "/user_profile" : "/register"}>
             <CustomBtn1
               variant="contained"
               sx={{
                 display: "block",
               }}
             >
-              Register yourself
+              {isLoggedIn ? "View Your Profile" : "Register yourself"}
             </CustomBtn1>
           </Link>
         </HeaderSubTitle>

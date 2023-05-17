@@ -10,3 +10,4 @@ export { default as OurMission } from "../Pages/HomePage/OurMission/OurMission";
 export { default as Register } from "../Pages/RegisterPage/Register/Register";
 export { default as AdditionalInfo } from "../Pages/AdditionalInfo/AdditionalInfo";
 export { default as UserProfile } from "../Pages/UserProfile/UserProfile";
+export { default as FindBloodLanding } from "../Pages/FindBloodPage/FindBloodLanding/FindBloodLanding";
