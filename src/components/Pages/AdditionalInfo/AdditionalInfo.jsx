@@ -11,10 +11,13 @@ import {
 } from "@mui/material";
 import { RegisterBox, RegisterTitle } from "../RegisterPage/Register/Register";
 import { useForm, Controller } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addAdditionalInfo } from "../../../redux/slices/userSlice/userSlice";
+import client from "../../../API/API";
 
 const AdditionalInfo = () => {
   const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
   const {
     control,
     handleSubmit,
@@ -26,7 +29,15 @@ const AdditionalInfo = () => {
       bloodGroup: "",
     },
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    dispatch(addAdditionalInfo(data));
+    try {
+      const { data } = await client.post("/donor/create", user);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Box
       component="section"

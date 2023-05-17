@@ -13,13 +13,20 @@ export const userSlice = createSlice({
         state.user = action.payload
         state.isLoggedIn = true
     },
+    addAdditionalInfo: (state,action) => {
+        const {number,location,bloodGroup,name} = action.payload;
+        state.user.number = number;
+        state.user.location = location;
+        state.user.bloodGroup = bloodGroup;
+        state.user.name = name;
+    },
     removeUserInfo: (state) => {
         state.user = null
         state.isLoggedIn = false
-    }
+    },
   },
 })
 
-export const { addUserInfo, removeUserInfo } = userSlice.actions
+export const { addUserInfo, removeUserInfo,addAdditionalInfo } = userSlice.actions
 
 export default userSlice.reducer
