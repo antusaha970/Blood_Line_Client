@@ -12,6 +12,7 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import "./NavBar.css";
 import { useState } from "react";
+import { signOut, auth } from "../../../firebase/firebase.config";
 
 const LogoText = styled(Typography)`
   font-size: 30px;
@@ -87,6 +88,7 @@ const NavBar = () => {
             <CustomBtn2 variant="contained" color="secondary">
               <Link to="/find_blood">Seek Blood</Link>
             </CustomBtn2>
+            <Button onClick={() => signOut(auth)}>Sign Out</Button>
           </Stack>
         </Box>
         <Box display={{ lg: "none", md: "none", sm: "block", xs: "block" }}>

@@ -71,13 +71,12 @@ const Register = () => {
     signInWithRedirect(auth, provider);
   };
   useEffect(() => {
-    if (user !== null && loading !== true && error !== null) {
+    if (user !== null && loading !== true) {
       const { displayName: name, email, photoURL } = user;
       dispatch(addUserInfo({ name, email, photoURL }));
       navigate("/addition_info");
     }
-  }, []);
-
+  }, [user, loading]);
   if (error) {
     alert(error.message);
   }

@@ -15,7 +15,6 @@ import { useSelector } from "react-redux";
 
 const AdditionalInfo = () => {
   const user = useSelector((state) => state.user.user);
-  console.log(user);
   const {
     control,
     handleSubmit,
