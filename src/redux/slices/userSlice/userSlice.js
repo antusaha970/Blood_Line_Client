@@ -1,8 +1,10 @@
+/* eslint-disable no-useless-catch */
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   user: null,
   isLoggedIn: false,
+  isReady: false,
 }
 
 export const userSlice = createSlice({
@@ -12,7 +14,7 @@ export const userSlice = createSlice({
     addUserInfo: (state,action) => {
         state.user = action.payload
         state.isLoggedIn = true
-        // state.user.email = "xyz@gmail.com"
+        state.user.email = "xyuz@gmail.com"
     },
     addAdditionalInfo: (state,action) => {
         const {number,location,bloodGroup,name} = action.payload;
@@ -20,6 +22,7 @@ export const userSlice = createSlice({
         state.user.location = location;
         state.user.bloodGroup = bloodGroup;
         state.user.name = name;
+        state.isReady = true;
     },
     removeUserInfo: (state) => {
         state.user = null

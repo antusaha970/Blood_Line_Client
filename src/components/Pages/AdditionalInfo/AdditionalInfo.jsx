@@ -15,9 +15,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { addAdditionalInfo } from "../../../redux/slices/userSlice/userSlice";
 import { useNavigate } from "react-router";
 import client from "../../../API/API";
+import { useEffect } from "react";
 
 const AdditionalInfo = () => {
   const user = useSelector((state) => state.user.user);
+  const isReady = useSelector((state) => state.user.isReady);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -33,18 +35,23 @@ const AdditionalInfo = () => {
   });
   const onSubmit = async (userData) => {
     dispatch(addAdditionalInfo(userData));
-    // try {
-    //   console.log(user);
-    //   const { data } = await client.post("/donner/create", user);
-    //   if (data.status === "success") {
-    //     alert("Registration successfully completed");
-    //     navigate("/");
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    //   alert(error.response.data.message);
-    // }
   };
+  useEffect(() => {
+    async function postToServer() {
+      try {
+        const { data } = await client.post("/donner/create", user);
+        if (data.status === "success") {
+          navigate("/");
+        }
+      } catch (error) {
+        alert(error.message);
+        console.log(error);
+      }
+    }
+    if (isReady) {
+      postToServer();
+    }
+  }, [isReady]);
   return (
     <Box
       component="section"
