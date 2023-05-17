@@ -22,7 +22,7 @@ const LogoText = styled(Typography)`
 `;
 
 export const CustomBtn1 = styled(Button)`
-  background: red;
+  background: #c61938;
   color: white;
   box-shadow: none;
   border-radius: 0;
