@@ -34,7 +34,7 @@ const AdditionalInfo = () => {
     },
   });
   const onSubmit = async (userData) => {
-    dispatch(addAdditionalInfo(userData));
+    dispatch(addAdditionalInfo({ ...userData, alreadyRegistered: false }));
   };
   useEffect(() => {
     async function postToServer() {
@@ -51,7 +51,29 @@ const AdditionalInfo = () => {
     if (isReady) {
       postToServer();
     }
+    async function checkIfUserExist() {
+      try {
+        const { data } = await client.get(`/donner/get/${user.email}`);
+        if (data.status === "successful") {
+          const { location, bloodGroup, number, name } = data.data;
+          dispatch(
+            addAdditionalInfo({
+              location,
+              bloodGroup,
+              number,
+              name,
+              alreadyRegistered: true,
+            })
+          );
+          navigate("/");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    checkIfUserExist();
   }, [isReady]);
+
   return (
     <Box
       component="section"

@@ -77,6 +77,7 @@ const Register = () => {
       navigate("/addition_info");
     }
   }, [user, loading]);
+
   if (error) {
     alert(error.message);
   }

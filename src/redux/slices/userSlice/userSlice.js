@@ -15,12 +15,15 @@ export const userSlice = createSlice({
       state.isLoggedIn = true;
     },
     addAdditionalInfo: (state, action) => {
-      const { number, location, bloodGroup, name } = action.payload;
+      const { number, location, bloodGroup, name, alreadyRegistered } =
+        action.payload;
       state.user.number = number;
       state.user.location = location;
       state.user.bloodGroup = bloodGroup;
       state.user.name = name;
-      state.isReady = true;
+      if (!alreadyRegistered) {
+        state.isReady = true;
+      }
     },
     removeUserInfo: (state) => {
       state.user = null;
