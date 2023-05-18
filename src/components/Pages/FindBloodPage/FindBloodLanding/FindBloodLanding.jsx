@@ -16,6 +16,7 @@ import { Search } from "@mui/icons-material";
 import client from "../../../../API/API";
 import { useState } from "react";
 import { BloodCard, Footer, Loader3 } from "../../../index/index";
+import { CustomBtn1, CustomBtn2 } from "../../../shared/NavBar/NavBar";
 
 const FindBloodTitle = styled(Typography)`
   font-family: "Montserrat";
@@ -152,22 +153,22 @@ const FindBloodLanding = () => {
             Search
           </Button>
           <Stack direction="row" justifyContent="center" gap={2}>
-            <Button
+            <CustomBtn1
               variant="contained"
               color="secondary"
               onClick={handlePreviousPageLoad}
               type="submit"
             >
               Previous Page
-            </Button>
-            <Button
+            </CustomBtn1>
+            <CustomBtn2
               variant="contained"
               color="success"
               onClick={handleNextPageLoad}
               type="submit"
             >
               Next Page
-            </Button>
+            </CustomBtn2>
           </Stack>
         </Box>
         <Stack
