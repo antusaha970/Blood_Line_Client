@@ -53,7 +53,7 @@ const AdditionalInfo = () => {
     }
     async function checkIfUserExist() {
       try {
-        const { data } = await client.get(`/donner/get/${user.email}`);
+        const { data } = await client.get(`donner/singleDonor/${user.email}`);
         if (data.status === "successful") {
           const { location, bloodGroup, number, name } = data.data;
           dispatch(

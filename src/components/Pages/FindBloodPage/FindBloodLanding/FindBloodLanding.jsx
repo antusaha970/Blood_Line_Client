@@ -8,10 +8,14 @@ import {
   Select,
   Typography,
   Button,
+  Stack,
 } from "@mui/material";
 import "./FindBloodLanding.css";
 import { useForm, Controller } from "react-hook-form";
 import { Search } from "@mui/icons-material";
+import client from "../../../../API/API";
+import { useState } from "react";
+import BloodCard from "../BloodCard/BloodCard";
 
 const FindBloodTitle = styled(Typography)`
   font-family: "Montserrat";
@@ -45,9 +49,19 @@ const FindBloodLanding = () => {
       bloodGroup: "",
     },
   });
-  const onSubmit = (userData) => {
-    console.log(userData);
+  const [page, setPage] = useState(1);
+  const [donors, setDonors] = useState([]);
+  const onSubmit = async (userData) => {
+    try {
+      const { data } = await client.get(
+        `/bloodSearch?group=${userData.bloodGroup}&page=${page}&limit=10`
+      );
+      setDonors([...data.data]);
+    } catch (error) {
+      console.log(error);
+    }
   };
+  console.log(donors);
   return (
     <Box
       sx={{
@@ -82,13 +96,13 @@ const FindBloodLanding = () => {
                   id="bloodGroupInp"
                   label="Blood Group"
                 >
-                  <MenuItem value="O+">O+</MenuItem>
+                  <MenuItem value="O%2b">O+</MenuItem>
                   <MenuItem value="O-">O-</MenuItem>
-                  <MenuItem value="A+">A+</MenuItem>
+                  <MenuItem value="A%2b">A+</MenuItem>
                   <MenuItem value="A-">A-</MenuItem>
-                  <MenuItem value="B+">B+</MenuItem>
+                  <MenuItem value="B%2b">B+</MenuItem>
                   <MenuItem value="B-">B-</MenuItem>
-                  <MenuItem value="AB+">AB+</MenuItem>
+                  <MenuItem value="AB%2b">AB+</MenuItem>
                   <MenuItem value="AB-">AB-</MenuItem>
                 </Select>
               </FormControl>
@@ -109,6 +123,16 @@ const FindBloodLanding = () => {
             Search
           </Button>
         </Box>
+        <Stack
+          direction={{ md: "row", sm: "column" }}
+          sx={{
+            flexWrap: "wrap",
+          }}
+        >
+          {donors?.map((donor) => (
+            <BloodCard donor={donor} key={donor._id} />
+          ))}
+        </Stack>
       </Container>
     </Box>
   );
