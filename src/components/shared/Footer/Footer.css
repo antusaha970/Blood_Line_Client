@@ -1,0 +1,115 @@
+
+
+.footer-sec{
+    width: 100%;
+    height: 200px;
+    background: #0e0d0d;
+    /* margin-top: 120rem; */
+  }
+  .footer-rgba{
+  
+    width: 100%;
+    height: 200px;
+    background: #0e0d0d;
+  
+  }
+  .logo2{
+    text-align: center;
+    padding-top: 100px;
+  
+  }
+  
+  .logo2 img{
+    height: 130px;
+  
+  }
+  
+  .logo2 p{
+    font-size: 16px;
+   
+    color: ghostwhite;
+    margin-top: 15px;
+  }
+  
+  .logo2 a{
+    text-decoration: none;
+    color: ghostwhite;
+  
+   
+  
+  }
+  .logo2 a:hover i{
+    background:  ghostwhite;
+    color: black;
+    transform: scale(1.1);
+    transition: 1s;
+  }
+  .logo2 i{
+    font-size: 16px;
+    text-align: center;
+    margin: 30px 10px;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    
+    transition: 1s;
+    border-radius: 50%;
+  }
+  
+  
+  .copy-rght {
+    width: 100%;
+    height: 70px;
+    background: #0e0d0d;
+    text-align: center;
+  }
+  
+  .cpy-rght-rgba{
+    width: 100%;
+    height: 80px;
+    background: #0e0d0d;
+  }
+  .copy-rght hr {
+    width: 60%;
+    margin-left: 270px;
+    color: ghostwhite;
+  }
+  .copy-rght p {
+    line-height: 60px;
+    font-size: 16px;
+  
+    color: ghostwhite;
+  }
+  .copy-rght p span {
+    line-height: 60px;
+    font-size: 16px;
+    font-weight: bold;
+   
+  }
+  .copy-rght p span:hover{
+  
+    background: linear-gradient(to right, #44bd32,  ghostwhite);
+    color: transparent;
+    -webkit-background-clip: text;
+  }
+  
+  @media only screen and (max-width:766px){
+    .footer-sec{
+      margin-top: 120rem;
+    }
+  }
+  
+  @media only screen and (max-width:490px){
+    .copy-rght hr {
+      width: 65%;
+      margin-left: 13rem;
+      color: white;
+    }
+    .copy-rght p span{
+      font-size: 1.4rem;
+    }
+  
+    .footer-sec{
+      margin-top: 120rem;
+    }
+  }
