@@ -34,7 +34,7 @@ const BloodCard = ({ donor }) => {
   return (
     <Box
       sx={{
-        width: { md: "320px", xs: "100%" },
+        width: { md: "320px", xs: "90%" },
         minHeight: "300px",
         backgroundColor: "#EAE6DA",
         p: 2,

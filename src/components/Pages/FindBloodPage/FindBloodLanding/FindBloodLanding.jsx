@@ -15,7 +15,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Search } from "@mui/icons-material";
 import client from "../../../../API/API";
 import { useState } from "react";
-import BloodCard from "../BloodCard/BloodCard";
+import { BloodCard, Footer, Loader3 } from "../../../index/index";
 
 const FindBloodTitle = styled(Typography)`
   font-family: "Montserrat";
@@ -51,22 +51,43 @@ const FindBloodLanding = () => {
   });
   const [page, setPage] = useState(1);
   const [donors, setDonors] = useState([]);
+  const [loading, setLoading] = useState(false);
   const onSubmit = async (userData) => {
     try {
-      const { data } = await client.get(
-        `/bloodSearch?group=${userData.bloodGroup}&page=${page}&limit=10`
-      );
-      console.log(data);
-      setDonors([...data.data]);
+      if (!loading) {
+        setLoading(true);
+        console.log(page);
+        const { data } = await client.get(
+          `/bloodSearch?group=${userData.bloodGroup}&page=${page}&limit=10`
+        );
+        setDonors([...data.data]);
+        setLoading(false);
+      }
     } catch (error) {
       console.log(error);
+      setLoading(false);
+      alert(error.message);
     }
   };
-  console.log(donors);
+  const handleNextPageLoad = () => {
+    if (!loading) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
+  const handlePreviousPageLoad = () => {
+    if (!loading) {
+      if (page >= 2) {
+        setPage((prevPage) => prevPage - 1);
+      } else {
+        alert("You are already at the first page");
+      }
+    }
+  };
   return (
     <Box
       sx={{
         minHeight: "90vh",
+        mb: 2,
       }}
     >
       <Container maxWidth="lg">
@@ -96,6 +117,7 @@ const FindBloodLanding = () => {
                   labelId="bloodGroupLabel"
                   id="bloodGroupInp"
                   label="Blood Group"
+                  onClick={() => setPage(1)}
                 >
                   <MenuItem value="O%2b">O+</MenuItem>
                   <MenuItem value="O-">O-</MenuItem>
@@ -120,9 +142,33 @@ const FindBloodLanding = () => {
               Please select a blood group
             </Typography>
           )}
-          <Button type="submit" startIcon={<Search />}>
+          <Button
+            type="submit"
+            startIcon={<Search />}
+            sx={{
+              my: 1,
+            }}
+          >
             Search
           </Button>
+          <Stack direction="row" justifyContent="center" gap={2}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handlePreviousPageLoad}
+              type="submit"
+            >
+              Previous Page
+            </Button>
+            <Button
+              variant="contained"
+              color="success"
+              onClick={handleNextPageLoad}
+              type="submit"
+            >
+              Next Page
+            </Button>
+          </Stack>
         </Box>
         <Stack
           direction={{ md: "row", sm: "column" }}
@@ -134,10 +180,23 @@ const FindBloodLanding = () => {
             pb: 3,
           }}
         >
-          {donors?.map((donor) => (
-            <BloodCard donor={donor} key={donor._id} />
-          ))}
+          {loading ? (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                mt: 2,
+              }}
+            >
+              <Loader3 />
+            </Box>
+          ) : (
+            donors?.map((donor) => <BloodCard donor={donor} key={donor._id} />)
+          )}
         </Stack>
+        <Footer />
       </Container>
     </Box>
   );
