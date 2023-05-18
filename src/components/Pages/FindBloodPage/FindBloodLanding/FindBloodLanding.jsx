@@ -56,6 +56,7 @@ const FindBloodLanding = () => {
       const { data } = await client.get(
         `/bloodSearch?group=${userData.bloodGroup}&page=${page}&limit=10`
       );
+      console.log(data);
       setDonors([...data.data]);
     } catch (error) {
       console.log(error);
@@ -127,6 +128,10 @@ const FindBloodLanding = () => {
           direction={{ md: "row", sm: "column" }}
           sx={{
             flexWrap: "wrap",
+            justifyContent: "space-between",
+            pt: 4,
+            gap: 3,
+            pb: 3,
           }}
         >
           {donors?.map((donor) => (
