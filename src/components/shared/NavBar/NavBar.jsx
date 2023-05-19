@@ -83,21 +83,59 @@ const NavBar = () => {
         <Box display={{ lg: "block", md: "block", sm: "none", xs: "none" }}>
           <Stack direction="row" alignItems="center">
             <div id="menuBar">
-              <NavLink to="/" className="nav-link">
+              <NavLink
+                to="/"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "nav-link"
+                    : isActive
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+              >
                 Home
               </NavLink>
-              <NavLink to="/contact" className="nav-link">
+              <NavLink
+                to="/contact"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "nav-link"
+                    : isActive
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+              >
                 Contact Us
               </NavLink>
+              {isLoggedIn && (
+                <NavLink
+                  to="/user_profile"
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? "nav-link"
+                      : isActive
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
+                >
+                  View Profile
+                </NavLink>
+              )}
             </div>
-            <CustomBtn1 variant="contained">
-              {!isLoggedIn && <Link to="/register">Register</Link>}
-              {isLoggedIn && <Link to="/user_profile">View Profile</Link>}
-            </CustomBtn1>
+            {!isLoggedIn && (
+              <CustomBtn1 variant="contained">
+                <Link to="/register">Register</Link>
+              </CustomBtn1>
+            )}
+
+            {isLoggedIn && (
+              <CustomBtn1 variant="contained" onClick={handleSignOut}>
+                Sign-Out
+              </CustomBtn1>
+            )}
             <CustomBtn2 variant="contained" color="secondary">
               <Link to="/find_blood">Seek Blood</Link>
             </CustomBtn2>
-            {isLoggedIn && <Button onClick={handleSignOut}>Sign Out</Button>}
           </Stack>
         </Box>
         <Box display={{ lg: "none", md: "none", sm: "block", xs: "block" }}>
@@ -140,32 +178,66 @@ const NavBar = () => {
                 color="#000"
               >
                 <NavLink
-                  to=""
+                  to="/"
                   onClick={() => {
                     handleClose();
                   }}
-                  className="nav-link"
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? "nav-link"
+                      : isActive
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
                 >
                   Home
                 </NavLink>
                 <NavLink
-                  to=""
+                  to="/contact"
                   onClick={() => {
                     handleClose();
                   }}
-                  className="nav-link"
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? "nav-link"
+                      : isActive
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
                 >
                   Contact Us
                 </NavLink>
-                <Link to="/register">
-                  <CustomBtn1 variant="contained">Register</CustomBtn1>
-                </Link>
+                {isLoggedIn && (
+                  <NavLink
+                    to="/user_profile"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "nav-link"
+                        : isActive
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                    onClick={() => {
+                      handleClose();
+                    }}
+                  >
+                    View Profile
+                  </NavLink>
+                )}
+                {!isLoggedIn && (
+                  <CustomBtn1 variant="contained">
+                    <Link to="/register">Register</Link>
+                  </CustomBtn1>
+                )}
+
+                {isLoggedIn && (
+                  <CustomBtn1 variant="contained" onClick={handleSignOut}>
+                    Sign-Out
+                  </CustomBtn1>
+                )}
                 <CustomBtn2 variant="contained" color="secondary">
                   <Link to="/find_blood">Seek Blood</Link>
                 </CustomBtn2>
-                {isLoggedIn && (
-                  <Button onClick={handleSignOut}>Sign Out</Button>
-                )}
               </Stack>
             </div>
           </Menu>

@@ -8,12 +8,7 @@
     padding-right: 10px;
 }
 
-#menuBar a.active {
+.active {
     color: red;
   }
 
-@media screen and (max-width: 768px) {
-    .nav-link {
-        color: #000;
-    }
-}
