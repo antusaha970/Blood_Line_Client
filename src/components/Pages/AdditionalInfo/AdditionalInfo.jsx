@@ -73,6 +73,7 @@ const AdditionalInfo = () => {
           setCheckUser(false);
         }
       } catch (error) {
+        setCheckUser(false);
         console.log(error);
       }
     }
@@ -104,6 +105,7 @@ const AdditionalInfo = () => {
       }
     );
   }, []);
+  console.log(checkUser);
   return (
     <Box
       component="section"

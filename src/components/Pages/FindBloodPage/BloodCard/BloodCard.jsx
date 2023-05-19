@@ -54,7 +54,7 @@ const BloodCard = ({ donor }) => {
     navigator.clipboard.writeText(donor.email);
     toast(`${donor.name.toUpperCase()} Email copied to clipboard`, {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
