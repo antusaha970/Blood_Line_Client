@@ -17,6 +17,7 @@ import { BloodCard, Footer, Loader3 } from "../../../index/index";
 import { CustomBtn1, CustomBtn2 } from "../../../shared/NavBar/NavBar";
 import "react-toastify/dist/ReactToastify.css";
 import "./FindBloodLanding.css";
+import { toast } from "react-toastify";
 
 const FindBloodTitle = styled(Typography)`
   font-family: "Montserrat";
@@ -80,7 +81,16 @@ const FindBloodLanding = () => {
       if (page >= 2) {
         setPage((prevPage) => prevPage - 1);
       } else {
-        alert("You are already at the first page");
+        toast(`You are at First page`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     }
   };
