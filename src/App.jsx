@@ -10,6 +10,7 @@ import {
   UserProfile,
 } from "./components/index";
 import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,6 +30,18 @@ function App() {
       ) : (
         <>
           <NavBar />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />

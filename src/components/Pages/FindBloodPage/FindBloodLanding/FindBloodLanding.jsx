@@ -17,6 +17,7 @@ import client from "../../../../API/API";
 import { useState } from "react";
 import { BloodCard, Footer, Loader3 } from "../../../index/index";
 import { CustomBtn1, CustomBtn2 } from "../../../shared/NavBar/NavBar";
+import "react-toastify/dist/ReactToastify.css";
 
 const FindBloodTitle = styled(Typography)`
   font-family: "Montserrat";
