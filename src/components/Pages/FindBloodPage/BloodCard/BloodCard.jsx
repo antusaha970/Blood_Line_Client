@@ -34,26 +34,25 @@ const CardContainer = styled(Box)`
 const BloodCard = ({ donor }) => {
   const handleCopyNumber = () => {
     navigator.clipboard.writeText(donor.number);
+    toast(`${donor.name.toUpperCase()} number copied to clipboard`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
       // Open the phone number in the mobile phone dialer
       window.location.href = `tel:${donor.number}`;
-    } else {
-      toast(`${donor.name.toUpperCase()} number copied`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
     }
   };
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(donor.email);
-    toast(`${donor.name.toUpperCase()} Email copied`, {
+    toast(`${donor.name.toUpperCase()} Email copied to clipboard`, {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -63,6 +62,15 @@ const BloodCard = ({ donor }) => {
       progress: undefined,
       theme: "light",
     });
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const mailtoLink = `mailto:${donor.email}`;
+    if (isMobile) {
+      // Open the email address in the user's email app
+      window.location.href = mailtoLink;
+    } else {
+      // Open the email address in a new browser tab
+      window.open(mailtoLink);
+    }
   };
   return (
     <>
@@ -98,8 +106,8 @@ const BloodCard = ({ donor }) => {
         <SubTitle>
           Location: <b>{donor.location}</b>
         </SubTitle>
-        <Button onClick={handleCopyNumber}>Copy Number</Button>
-        <Button onClick={handleCopyEmail}>Copy Email</Button>
+        <Button onClick={handleCopyNumber}>Call</Button>
+        <Button onClick={handleCopyEmail}>Email</Button>
       </CardContainer>
     </>
   );
