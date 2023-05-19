@@ -7,17 +7,16 @@ import {
   MenuItem,
   Select,
   Typography,
-  Button,
   Stack,
 } from "@mui/material";
 import "./FindBloodLanding.css";
 import { useForm, Controller } from "react-hook-form";
-import { Search } from "@mui/icons-material";
 import client from "../../../../API/API";
 import { useState } from "react";
 import { BloodCard, Footer, Loader3 } from "../../../index/index";
 import { CustomBtn1, CustomBtn2 } from "../../../shared/NavBar/NavBar";
 import "react-toastify/dist/ReactToastify.css";
+import "./FindBloodLanding.css";
 
 const FindBloodTitle = styled(Typography)`
   font-family: "Montserrat";
@@ -36,7 +35,7 @@ const FindBloodSubTitle = styled(Typography)`
   font-weight: 600;
   font-size: 20px;
   line-height: 26px;
-  text-align: center;
+  text-align: start;
   color: #000000;
   padding-bottom: 10px;
 `;
@@ -112,47 +111,60 @@ const FindBloodLanding = () => {
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-              <FormControl fullWidth margin="normal">
-                <InputLabel id="bloodGroupLabel">Blood Group</InputLabel>
-                <Select
-                  {...field}
-                  labelId="bloodGroupLabel"
-                  id="bloodGroupInp"
-                  label="Blood Group"
-                  onClick={() => setPage(1)}
+              <Stack
+                direction={{ md: "row", sm: "column" }}
+                alignItems="center"
+                gap={1}
+                justifyContent="space-between"
+                sx={{
+                  mb: { xs: "15px" },
+                }}
+              >
+                <Box
+                  flex={3}
+                  sx={{
+                    width: { xs: "100%" },
+                  }}
                 >
-                  <MenuItem value="O%2b">O+</MenuItem>
-                  <MenuItem value="O-">O-</MenuItem>
-                  <MenuItem value="A%2b">A+</MenuItem>
-                  <MenuItem value="A-">A-</MenuItem>
-                  <MenuItem value="B%2b">B+</MenuItem>
-                  <MenuItem value="B-">B-</MenuItem>
-                  <MenuItem value="AB%2b">AB+</MenuItem>
-                  <MenuItem value="AB-">AB-</MenuItem>
-                </Select>
-              </FormControl>
+                  <FormControl fullWidth margin="normal">
+                    <InputLabel id="bloodGroupLabel">Blood Group</InputLabel>
+                    <Select
+                      {...field}
+                      labelId="bloodGroupLabel"
+                      id="bloodGroupInp"
+                      label="Blood Group"
+                      onClick={() => setPage(1)}
+                    >
+                      <MenuItem value="O%2b">O+</MenuItem>
+                      <MenuItem value="O-">O-</MenuItem>
+                      <MenuItem value="A%2b">A+</MenuItem>
+                      <MenuItem value="A-">A-</MenuItem>
+                      <MenuItem value="B%2b">B+</MenuItem>
+                      <MenuItem value="B-">B-</MenuItem>
+                      <MenuItem value="AB%2b">AB+</MenuItem>
+                      <MenuItem value="AB-">AB-</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+                {errors.bloodGroup && (
+                  <Typography
+                    component="p"
+                    variant="small"
+                    sx={{
+                      color: "red",
+                    }}
+                  >
+                    Please select a blood group
+                  </Typography>
+                )}
+                <Box flex={1} alignItems="end">
+                  <button id="btnSearch" type="submit">
+                    Search
+                  </button>
+                </Box>
+              </Stack>
             )}
           />
-          {errors.bloodGroup && (
-            <Typography
-              component="p"
-              variant="small"
-              sx={{
-                color: "red",
-              }}
-            >
-              Please select a blood group
-            </Typography>
-          )}
-          <Button
-            type="submit"
-            startIcon={<Search />}
-            sx={{
-              my: 1,
-            }}
-          >
-            Search
-          </Button>
           <Stack direction="row" justifyContent="center" gap={2}>
             <CustomBtn1
               variant="contained"
