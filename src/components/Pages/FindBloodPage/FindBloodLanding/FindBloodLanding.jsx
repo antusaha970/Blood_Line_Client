@@ -54,7 +54,9 @@ const FindBloodLanding = () => {
   const [page, setPage] = useState(1);
   const [donors, setDonors] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
   const onSubmit = async (userData) => {
+    setInitialLoading(false);
     try {
       if (!loading) {
         setLoading(true);
@@ -68,7 +70,16 @@ const FindBloodLanding = () => {
     } catch (error) {
       console.log(error);
       setLoading(false);
-      alert(error.message);
+      toast(`${error.message}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
   const handleNextPageLoad = () => {
@@ -219,7 +230,7 @@ const FindBloodLanding = () => {
           ) : (
             donors?.map((donor) => <BloodCard donor={donor} key={donor._id} />)
           )}
-          {donors.length === 0 && (
+          {donors.length === 0 && !initialLoading && (
             <Typography
               variant="p"
               component="p"
@@ -231,7 +242,9 @@ const FindBloodLanding = () => {
                 fontSize: "18px",
               }}
             >
-              No moro donors
+              {loading
+                ? "Please with donors are being loaded"
+                : "No moro donors"}
             </Typography>
           )}
         </Stack>
