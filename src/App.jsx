@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import {
   AdditionalInfo,
+  Contact,
   FindBloodLanding,
   Home,
   Loader,
@@ -46,6 +47,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/find_blood" element={<FindBloodLanding />} />
+            <Route path="/contact" element={<Contact />} />
             <Route
               path="/addition_info"
               element={
