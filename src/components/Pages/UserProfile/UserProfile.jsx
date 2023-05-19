@@ -14,6 +14,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { Footer } from "../../index";
+import client from "../../../API/API";
+import { toast } from "react-toastify";
 const ProfileBox = styled(Box)`
   width: 500px;
   min-height: 400px;
@@ -55,9 +57,42 @@ const UserProfile = () => {
   const handleEdit = () => {
     setEditState(true);
   };
-  const onSubmit = async (data) => {
-    setEditState(false);
-    console.log(data);
+  const onSubmit = async (userData) => {
+    try {
+      const { data } = await client.put(
+        `/donner/update/${user.email}`,
+        userData
+      );
+      if (data.status === "successful") {
+        setEditState(false);
+        toast(
+          `Your Information updated \n 
+          Please login again to see updated information`,
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
+        );
+      }
+    } catch (error) {
+      console.log(error);
+      toast(`Failed to update \n ${error.message}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
   return (
     <>
