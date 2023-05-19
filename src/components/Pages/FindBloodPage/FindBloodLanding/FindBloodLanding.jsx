@@ -219,6 +219,21 @@ const FindBloodLanding = () => {
           ) : (
             donors?.map((donor) => <BloodCard donor={donor} key={donor._id} />)
           )}
+          {donors.length === 0 && (
+            <Typography
+              variant="p"
+              component="p"
+              sx={{
+                color: "red",
+                textAlign: "center",
+                mt: 2,
+                mb: 2,
+                fontSize: "18px",
+              }}
+            >
+              No moro donors
+            </Typography>
+          )}
         </Stack>
         <Footer />
       </Container>
