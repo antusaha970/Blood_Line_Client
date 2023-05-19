@@ -34,16 +34,22 @@ const CardContainer = styled(Box)`
 const BloodCard = ({ donor }) => {
   const handleCopyNumber = () => {
     navigator.clipboard.writeText(donor.number);
-    toast(`${donor.name.toUpperCase()} number copied`, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      // Open the phone number in the mobile phone dialer
+      window.location.href = `tel:${donor.number}`;
+    } else {
+      toast(`${donor.name.toUpperCase()} number copied`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(donor.email);
