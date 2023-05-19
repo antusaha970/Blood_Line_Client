@@ -15,13 +15,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { addAdditionalInfo } from "../../../redux/slices/userSlice/userSlice";
 import { useNavigate } from "react-router";
 import client from "../../../API/API";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const AdditionalInfo = () => {
   const user = useSelector((state) => state.user.user);
   const isReady = useSelector((state) => state.user.isReady);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [checkUser, setCheckUser] = useState(false);
   const {
     control,
     handleSubmit,
@@ -53,6 +54,7 @@ const AdditionalInfo = () => {
     }
     async function checkIfUserExist() {
       try {
+        setCheckUser(true);
         const { data } = await client.get(`donner/singleDonor/${user.email}`);
         if (data.status === "successful") {
           const { location, bloodGroup, number, name } = data.data;
@@ -66,6 +68,8 @@ const AdditionalInfo = () => {
             })
           );
           navigate("/");
+        } else {
+          setCheckUser(false);
         }
       } catch (error) {
         console.log(error);
@@ -238,7 +242,11 @@ const AdditionalInfo = () => {
                 Please select your location
               </Typography>
             )}
-            <Button type="submit" color="secondary" variant="contained">
+            <Button
+              type={checkUser ? "button" : "submit"}
+              color="secondary"
+              variant="contained"
+            >
               Submit
             </Button>
           </Box>

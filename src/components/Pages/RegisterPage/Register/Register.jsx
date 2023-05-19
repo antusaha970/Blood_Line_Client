@@ -77,6 +77,13 @@ const Register = () => {
       navigate("/addition_info");
     }
   }, [user, loading]);
+  useEffect(() => {
+    if (!navigator.cookieEnabled) {
+      alert(`For the authentication you need to enable the cookie of your browser
+      Please enable the cookie from browser setting and try again
+      `);
+    }
+  }, []);
 
   if (error) {
     alert(error.message);
