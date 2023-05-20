@@ -12,6 +12,7 @@ import {
 } from "./components/index";
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
+import { Typography } from "@mui/material";
 
 function App() {
   const isMessengerWebView =
@@ -24,7 +25,7 @@ function App() {
     }, 3000);
     if (isMessengerWebView) {
       window.open("https://blood-line-icst.netlify.app/", "_blank");
-      window.close(); // Close the current tab within Messenger web view
+      // window.close(); // Close the current tab within Messenger web view
     }
     return () => {
       clearTimeout(loaderId);
@@ -37,6 +38,15 @@ function App() {
         <Loader />
       ) : (
         <>
+          <Typography
+            variant="small"
+            sx={{
+              textAlign: "center",
+            }}
+            component="p"
+          >
+            Website is in development please report bugs to developers
+          </Typography>
           <NavBar />
           <ToastContainer
             position="top-right"
