@@ -13,22 +13,19 @@ import {
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 
-const MessengerWebViewRedirect = () => {
+function App() {
   const isMessengerWebView =
     navigator.userAgent.includes("FBAN") ||
     navigator.userAgent.includes("FBAV");
-  console.log(isMessengerWebView);
-  if (isMessengerWebView) {
-    window.location.href = "https://blood-line-icst.netlify.app/";
-  }
-};
-function App() {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const loaderId = setTimeout(() => {
       setIsLoading(false);
     }, 3000);
-    MessengerWebViewRedirect();
+    if (isMessengerWebView) {
+      window.open("https://blood-line-icst.netlify.app/", "_blank");
+      window.close(); // Close the current tab within Messenger web view
+    }
     return () => {
       clearTimeout(loaderId);
     };
