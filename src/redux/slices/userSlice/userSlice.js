@@ -1,10 +1,28 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import client from "../../../API/API";
 
 const initialState = {
   user: null,
   isLoggedIn: false,
   isReady: false,
+  isOldLoggedIn: false,
+  isCheckingPending: true,
 };
+export const fetchLoggedInUser = createAsyncThunk(
+  "users/fetchLoggedInUser",
+  async (email) => {
+    try {
+      const { data } = await client.get(`donner/singleDonor/${email}`);
+      if (data.status === "successful") {
+        return data.data;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 export const userSlice = createSlice({
   name: "user",
@@ -28,7 +46,24 @@ export const userSlice = createSlice({
     removeUserInfo: (state) => {
       state.user = null;
       state.isLoggedIn = false;
+      state.isOldLoggedIn = false;
+      state.isCheckingPending = true;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchLoggedInUser.fulfilled, (state, action) => {
+      if (action.payload) {
+        const { location, bloodGroup, number, name } = action.payload;
+        state.user.number = number;
+        state.user.location = location;
+        state.user.bloodGroup = bloodGroup;
+        state.user.name = name;
+        state.isOldLoggedIn = true;
+        state.isCheckingPending = false;
+      } else {
+        state.isCheckingPending = false;
+      }
+    });
   },
 });
 

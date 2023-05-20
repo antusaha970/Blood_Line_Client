@@ -13,9 +13,22 @@ import {
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Typography } from "@mui/material";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase/firebase.config";
+import { useDispatch } from "react-redux";
+import {
+  addUserInfo,
+  fetchLoggedInUser,
+} from "./redux/slices/userSlice/userSlice";
+import { toast } from "react-toastify";
 
 function App() {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
+  const [user, loading, error] = useAuthState(auth);
+  if (error) {
+    console.log(error);
+  }
   useEffect(() => {
     const loaderId = setTimeout(() => {
       setIsLoading(false);
@@ -25,6 +38,23 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    if (user !== null && loading !== true) {
+      const { displayName: name, email, photoURL: imageURL } = user;
+      dispatch(addUserInfo({ name, email, imageURL }));
+      dispatch(fetchLoggedInUser(email));
+      toast(`Welcome ${name.toUpperCase()}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }, [user, loading]);
   return (
     <>
       {isLoading ? (

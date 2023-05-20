@@ -15,15 +15,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { addAdditionalInfo } from "../../../redux/slices/userSlice/userSlice";
 import { useNavigate } from "react-router";
 import client from "../../../API/API";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 const AdditionalInfo = () => {
   const user = useSelector((state) => state.user.user);
   const isReady = useSelector((state) => state.user.isReady);
+  const isOldLoggedIn = useSelector((state) => state.user.isOldLoggedIn);
+  const isCheckingPending = useSelector(
+    (state) => state.user.isCheckingPending
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [checkUser, setCheckUser] = useState(false);
   const {
     control,
     handleSubmit,
@@ -39,6 +42,11 @@ const AdditionalInfo = () => {
     dispatch(addAdditionalInfo({ ...userData, alreadyRegistered: false }));
   };
   useEffect(() => {
+    if (isOldLoggedIn) {
+      navigate("/");
+    }
+  }, [isOldLoggedIn]);
+  useEffect(() => {
     async function postToServer() {
       try {
         const { data } = await client.post("/donner/create", user);
@@ -52,45 +60,20 @@ const AdditionalInfo = () => {
     }
     if (isReady) {
       postToServer();
+      toast(`Your information has been submitted please wait`, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
-    async function checkIfUserExist() {
-      try {
-        setCheckUser(true);
-        const { data } = await client.get(`donner/singleDonor/${user.email}`);
-        if (data.status === "successful") {
-          const { location, bloodGroup, number, name } = data.data;
-          dispatch(
-            addAdditionalInfo({
-              location,
-              bloodGroup,
-              number,
-              name,
-              alreadyRegistered: true,
-            })
-          );
-          navigate("/");
-        } else {
-          setCheckUser(false);
-        }
-      } catch (error) {
-        setCheckUser(false);
-        console.log(error);
-      }
-    }
-    checkIfUserExist();
   }, [isReady]);
 
   useEffect(() => {
-    toast(`Welcome ${user.name}`, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
     toast(
       `If you already registered than please wait your data is being loaded else please submit the form with correct information`,
       {
@@ -105,7 +88,6 @@ const AdditionalInfo = () => {
       }
     );
   }, []);
-  console.log(checkUser);
   return (
     <Box
       component="section"
@@ -270,13 +252,16 @@ const AdditionalInfo = () => {
                 Please select your location
               </Typography>
             )}
-            <Button
-              type={checkUser ? "button" : "submit"}
-              color="secondary"
-              variant="contained"
-            >
-              Submit
-            </Button>
+            {!isCheckingPending && (
+              <Button type="submit" color="secondary" variant="contained">
+                Submit
+              </Button>
+            )}
+            {isCheckingPending && (
+              <Button type="button" color="secondary" variant="contained">
+                Please Wait
+              </Button>
+            )}
           </Box>
         </RegisterBox>
       </Container>
