@@ -3,6 +3,7 @@ import { Box, Button, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import avatar from "../../../../assets/avatar.jpg";
 import { toast } from "react-toastify";
+import { Email, Phone, Place, Bloodtype } from "@mui/icons-material";
 const Name = styled(Typography)`
   font-family: "Montserrat";
   font-style: normal;
@@ -23,9 +24,15 @@ const SubTitle = styled(Typography)`
   text-align: left;
   color: #000000;
   padding-bottom: 8px;
+  display: flex;
+  align-items: center;
 `;
 
 const CardContainer = styled(Box)`
+  background: rgba(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.225);
   -webkit-box-shadow: 3px 0.5px 11px 0 #dddddd;
   -moz-box-shadow: 3px 0.5px 11px 0 #dddddd;
   box-shadow: 3px 0.5px 11px 0 #dddddd;
@@ -78,33 +85,36 @@ const BloodCard = ({ donor }) => {
         sx={{
           width: { md: "320px", xs: "90%" },
           minHeight: "300px",
-          backgroundColor: "#ECF2FF",
           p: 2,
-          border: "1px solid #E5D1FA",
         }}
       >
         <Box>
           <img
             src={donor.imageURL ?? avatar}
             alt="Donor profile picture"
-            style={{ margin: "auto", display: "block", borderRadius: "50%" }}
+            style={{
+              margin: "auto",
+              display: "block",
+              borderRadius: "50%",
+              paddingBottom: "10px",
+            }}
           />
         </Box>
         <Name>{`${donor.name}`.toUpperCase()}</Name>
         <SubTitle>
-          Blood-Group:{" "}
+          <Bloodtype /> &nbsp;:&nbsp;&nbsp;
           <b>
             <font color="red">{donor.bloodGroup}</font>
           </b>
         </SubTitle>
         <SubTitle>
-          Mobile-Number: <b>{donor.number}</b>
+          <Phone /> &nbsp;: &nbsp;<b>{donor.number}</b>
         </SubTitle>
         <SubTitle>
-          E-mail: <b>{donor.email}</b>
+          <Email /> &nbsp;: &nbsp;<b>{donor.email}</b>
         </SubTitle>
         <SubTitle>
-          Location: <b>{donor.location}</b>
+          <Place /> &nbsp;: &nbsp;<b>{donor.location}</b>
         </SubTitle>
         <Button onClick={handleCopyNumber}>Call</Button>
         <Button onClick={handleCopyEmail}>Email</Button>
