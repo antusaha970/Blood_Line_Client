@@ -2,9 +2,10 @@ import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { Footer } from "../../index";
 import styled from "@emotion/styled";
 import { useForm, Controller } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { sendUserContactMsg } from "../../../redux/slices/userSlice/userSlice";
 const ContactTitle = styled(Typography)`
   font-family: "Montserrat";
   font-style: normal;
@@ -38,24 +39,45 @@ const Contact = () => {
   });
   const user = useSelector((state) => state.user.user);
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const dispatch = useDispatch();
   const onSubmit = async (userData) => {
     const messageData = {
       ...userData,
-      email: user.email,
-      sendDate: new Date(),
+      from: user.email,
+      to: "antu.digi.88@gmail.com",
     };
-    console.log(messageData);
-    toast(`Thank you ${user.name.toUpperCase()} we will get back to you soon`, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-    reset();
+
+    try {
+      const result = await dispatch(sendUserContactMsg(messageData)).unwrap();
+      if (result.status === "success") {
+        toast(
+          `Thank you ${user.name.toUpperCase()} we will get back to you soon`,
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
+        );
+        reset();
+      }
+    } catch (error) {
+      console.error(error);
+      toast(`${error.message}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
   return (
     <>

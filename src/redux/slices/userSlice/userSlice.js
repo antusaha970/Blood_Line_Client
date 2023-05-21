@@ -24,6 +24,18 @@ export const fetchLoggedInUser = createAsyncThunk(
     }
   }
 );
+export const sendUserContactMsg = createAsyncThunk(
+  "users/sendMessage",
+  async (msg) => {
+    try {
+      const { data } = await client.post(`/sendEmail`, msg);
+      return data;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+);
 
 export const userSlice = createSlice({
   name: "user",
