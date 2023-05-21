@@ -14,3 +14,4 @@ export { default as UserProfile } from "../Pages/UserProfile/UserProfile";
 export { default as FindBloodLanding } from "../Pages/FindBloodPage/FindBloodLanding/FindBloodLanding";
 export { default as BloodCard } from "../Pages/FindBloodPage/BloodCard/BloodCard";
 export { default as Contact } from "../Pages/Contact/Contact";
+export { default as ViewDevelopers } from "../Pages/ViewDevelopers/ViewDevelopers";
