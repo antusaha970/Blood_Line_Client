@@ -9,7 +9,11 @@ import {
   FormControl,
   Button,
 } from "@mui/material";
-import { RegisterBox, RegisterTitle } from "../RegisterPage/Register/Register";
+import {
+  RegisterBoxGlass,
+  RegisterContainer,
+  RegisterTitle,
+} from "../RegisterPage/Register/Register";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { addAdditionalInfo } from "../../../redux/slices/userSlice/userSlice";
@@ -91,7 +95,7 @@ const AdditionalInfo = () => {
     );
   }, []);
   return (
-    <Box
+    <RegisterContainer
       component="section"
       sx={{
         minWidth: "100%",
@@ -115,7 +119,7 @@ const AdditionalInfo = () => {
         >
           <font color="black">Blood</font>-<font color="red">Line</font>
         </Typography>
-        <RegisterBox
+        <RegisterBoxGlass
           sx={{
             height: "auto",
             py: "15px",
@@ -265,9 +269,9 @@ const AdditionalInfo = () => {
               </Button>
             )}
           </Box>
-        </RegisterBox>
+        </RegisterBoxGlass>
       </Container>
-    </Box>
+    </RegisterContainer>
   );
 };
 
