@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addAdditionalInfo } from "../../../redux/slices/userSlice/userSlice";
 import { useNavigate } from "react-router";
 import client from "../../../API/API";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const AdditionalInfo = () => {
@@ -25,6 +25,7 @@ const AdditionalInfo = () => {
   const isCheckingPending = useSelector(
     (state) => state.user.isCheckingPending
   );
+  const [submitted, setSubmitted] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -39,6 +40,7 @@ const AdditionalInfo = () => {
     },
   });
   const onSubmit = async (userData) => {
+    setSubmitted(true);
     dispatch(addAdditionalInfo({ ...userData, alreadyRegistered: false }));
   };
   useEffect(() => {
@@ -252,7 +254,7 @@ const AdditionalInfo = () => {
                 Please select your location
               </Typography>
             )}
-            {!isCheckingPending && (
+            {!isCheckingPending && !submitted && (
               <Button type="submit" color="secondary" variant="contained">
                 Submit
               </Button>
