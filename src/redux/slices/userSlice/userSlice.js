@@ -7,6 +7,7 @@ const initialState = {
   isReady: false,
   isOldLoggedIn: false,
   isCheckingPending: true,
+  languagePreference: "bangla",
 };
 export const fetchLoggedInUser = createAsyncThunk(
   "users/fetchLoggedInUser",
@@ -49,6 +50,19 @@ export const userSlice = createSlice({
       state.isOldLoggedIn = false;
       state.isCheckingPending = true;
     },
+    changeLanguages: (state, action) => {
+      if (action.payload) {
+        state.languagePreference = action.payload;
+      } else {
+        if (state.languagePreference === "bangla") {
+          localStorage.setItem("languagePreference", "english");
+          state.languagePreference = "english";
+        } else {
+          localStorage.setItem("languagePreference", "bangla");
+          state.languagePreference = "bangla";
+        }
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchLoggedInUser.fulfilled, (state, action) => {
@@ -67,7 +81,11 @@ export const userSlice = createSlice({
   },
 });
 
-export const { addUserInfo, removeUserInfo, addAdditionalInfo } =
-  userSlice.actions;
+export const {
+  addUserInfo,
+  removeUserInfo,
+  addAdditionalInfo,
+  changeLanguages,
+} = userSlice.actions;
 
 export default userSlice.reducer;

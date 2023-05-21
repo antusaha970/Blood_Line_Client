@@ -18,6 +18,7 @@ import { auth } from "./firebase/firebase.config";
 import { useDispatch } from "react-redux";
 import {
   addUserInfo,
+  changeLanguages,
   fetchLoggedInUser,
 } from "./redux/slices/userSlice/userSlice";
 import { toast } from "react-toastify";
@@ -30,6 +31,10 @@ function App() {
     console.log(error);
   }
   useEffect(() => {
+    const languagePreference = localStorage.getItem("languagePreference");
+    if (languagePreference) {
+      dispatch(changeLanguages(languagePreference));
+    }
     const loaderId = setTimeout(() => {
       setIsLoading(false);
     }, 3000);
