@@ -41,10 +41,12 @@ const AdditionalInfo = () => {
       number: "",
       location: "",
       bloodGroup: "",
+      isAbleToDonateBlood: "",
     },
   });
   const onSubmit = async (userData) => {
     setSubmitted(true);
+    console.log(userData);
     dispatch(addAdditionalInfo({ ...userData, alreadyRegistered: false }));
   };
   useEffect(() => {
@@ -241,8 +243,12 @@ const AdditionalInfo = () => {
                     label="Your Location"
                   >
                     <MenuItem value="Feni">Feni</MenuItem>
-                    <MenuItem value="Dhaka">Dhaka</MenuItem>
-                    <MenuItem value="Chottogram">Chottogram</MenuItem>
+                    <MenuItem value="Daganbhuiyan">Daganbhuiyan</MenuItem>
+                    <MenuItem value="Chhagalnaiya">Chhagalnaiya</MenuItem>
+                    <MenuItem value="Sonagazi">Sonagazi</MenuItem>
+                    <MenuItem value="Parshuram">Parshuram</MenuItem>
+                    <MenuItem value="Parshuram">Parshuram</MenuItem>
+                    <MenuItem value="Fulgazi">Fulgazi</MenuItem>
                   </Select>
                 </FormControl>
               )}
@@ -256,6 +262,36 @@ const AdditionalInfo = () => {
                 }}
               >
                 Please select your location
+              </Typography>
+            )}
+            <Controller
+              name="isAbleToDonateBlood"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <FormControl fullWidth margin="normal">
+                  <InputLabel id="ableOptLabel">Ready to Donate?</InputLabel>
+                  <Select
+                    {...field}
+                    labelId="ableOptLabel"
+                    id="ableIdDonate"
+                    label="Ready to Donate?"
+                  >
+                    <MenuItem value="Yes">Yes</MenuItem>
+                    <MenuItem value="No">No</MenuItem>
+                  </Select>
+                </FormControl>
+              )}
+            />
+            {errors.isAbleToDonateBlood && (
+              <Typography
+                component="p"
+                variant="small"
+                sx={{
+                  color: "red",
+                }}
+              >
+                please let us know are you ready or not
               </Typography>
             )}
             {!isCheckingPending && !submitted && (
