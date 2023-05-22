@@ -9,6 +9,7 @@ import {
   PrivateRoute,
   Register,
   UserProfile,
+  ViewDevelopers,
 } from "./components/index";
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
@@ -93,6 +94,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/find_blood" element={<FindBloodLanding />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/view_developers" element={<ViewDevelopers />} />
             <Route
               path="/addition_info"
               element={
