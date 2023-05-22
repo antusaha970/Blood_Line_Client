@@ -116,6 +116,10 @@ const BloodCard = ({ donor }) => {
         <SubTitle>
           <Place /> &nbsp;: &nbsp;<b>{donor.location}</b>
         </SubTitle>
+        <SubTitle>
+          Ready to Donate &nbsp;: &nbsp;
+          <b>{donor?.isAbleToDonateBlood || "Yes"}</b>
+        </SubTitle>
         <Button onClick={handleCopyNumber}>Call</Button>
         <Button onClick={handleCopyEmail}>Email</Button>
       </CardContainer>
@@ -133,5 +137,6 @@ BloodCard.propTypes = {
     location: PropTypes.string,
     number: PropTypes.string,
     imageURL: PropTypes.string,
+    isAbleToDonateBlood: PropTypes.string,
   }).isRequired,
 };
