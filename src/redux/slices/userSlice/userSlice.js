@@ -86,11 +86,13 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchLoggedInUser.fulfilled, (state, action) => {
       if (action.payload) {
-        const { location, bloodGroup, number, name } = action.payload;
+        const { location, bloodGroup, number, name, isAbleToDonateBlood } =
+          action.payload;
         state.user.number = number;
         state.user.location = location;
         state.user.bloodGroup = bloodGroup;
         state.user.name = name;
+        state.user.isAbleToDonateBlood = isAbleToDonateBlood || "Yes";
         state.isOldLoggedIn = true;
         state.isCheckingPending = false;
       } else {
