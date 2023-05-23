@@ -97,7 +97,10 @@ const ViewDevelopers = () => {
               <Typography variant="p" component="p">
                 Mehmud is advisor for this project
               </Typography>
-              <a href="">
+              <a
+                href="https://www.linkedin.com/in/abdullah-al-mehmud-393837255/"
+                target=" "
+              >
                 <LinkedIn />
               </a>
             </Box>
