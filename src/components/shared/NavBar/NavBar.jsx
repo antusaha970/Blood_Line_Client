@@ -19,6 +19,9 @@ import { removeUserInfo } from "../../../redux/slices/userSlice/userSlice";
 const LogoText = styled(Typography)`
   font-size: 30px;
   font-weight: 800;
+  @media (max-width: 765px) {
+    font-size: 20px;
+  }
 `;
 
 export const CustomBtn1 = styled(Button)`
@@ -77,7 +80,7 @@ const NavBar = () => {
       >
         <Box>
           <LogoText component="p" variant="p">
-            <font color="black">Blood</font>-<font color="red">Line</font>
+            Feni-<font color="red">Blood</font>-Line
           </LogoText>
         </Box>
         <Box display={{ lg: "block", md: "block", sm: "none", xs: "none" }}>
