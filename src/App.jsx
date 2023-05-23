@@ -13,7 +13,6 @@ import {
 } from "./components/index";
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { Typography } from "@mui/material";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase/firebase.config";
 import { useDispatch } from "react-redux";
@@ -67,15 +66,6 @@ function App() {
         <Loader />
       ) : (
         <>
-          <Typography
-            variant="small"
-            sx={{
-              textAlign: "center",
-            }}
-            component="p"
-          >
-            Website is in development please report bugs to developers
-          </Typography>
           <NavBar />
           <ToastContainer
             position="top-right"

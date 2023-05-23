@@ -38,7 +38,10 @@ const ViewDevelopers = () => {
               <Typography variant="p" component="p">
                 Raihan has worked on Backend for this project
               </Typography>
-              <a href="">
+              <a
+                href="https://www.linkedin.com/in/abdur-raihan-a3449b205/"
+                target=" "
+              >
                 <LinkedIn />
               </a>
             </Box>
@@ -66,7 +69,7 @@ const ViewDevelopers = () => {
               <Typography variant="p" component="p">
                 Antu has worked on frontend for this project
               </Typography>
-              <a href="">
+              <a href="https://www.linkedin.com/in/antusaha970/" target=" ">
                 <LinkedIn />
               </a>
             </Box>
