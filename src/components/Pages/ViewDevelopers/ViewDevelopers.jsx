@@ -92,7 +92,7 @@ const ViewDevelopers = () => {
             </Box>
             <Box>
               <Typography variant="h5" component="p">
-                Al mehmud
+                Mehmud
               </Typography>
               <Typography variant="p" component="p">
                 Mehmud is advisor for this project
