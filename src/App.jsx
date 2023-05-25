@@ -22,6 +22,7 @@ import {
   fetchLoggedInUser,
 } from "./redux/slices/userSlice/userSlice";
 import { toast } from "react-toastify";
+import { Typography } from "@mui/material";
 
 function App() {
   const dispatch = useDispatch();
@@ -66,6 +67,19 @@ function App() {
         <Loader />
       ) : (
         <>
+          <Typography
+            component="h4"
+            variant="h6"
+            sx={{
+              color: "red",
+              p: 2,
+            }}
+          >
+            We are not operating our operations right now. Website is still in
+            development. You can register but please attend calls wisely. If
+            someone call you by our name don&apos;t go their now. We will notify
+            you when we are operating.{" "}
+          </Typography>
           <NavBar />
           <ToastContainer
             position="top-right"
