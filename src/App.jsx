@@ -72,6 +72,7 @@ function App() {
             variant="h6"
             sx={{
               color: "red",
+              fontWeight: "bold",
               p: 2,
             }}
           >
