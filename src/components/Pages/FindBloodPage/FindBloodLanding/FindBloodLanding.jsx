@@ -19,6 +19,22 @@ import "react-toastify/dist/ReactToastify.css";
 import "./FindBloodLanding.css";
 import { toast } from "react-toastify";
 
+const FindBloodContainer = styled(Box)`
+  background-color: hsla(0, 100%, 50%, 1);
+  background-image: radial-gradient(
+      at 44% 39%,
+      hsla(28, 100%, 74%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 79% 4%, hsla(189, 100%, 56%, 1) 0px, transparent 50%),
+    radial-gradient(at 13% 50%, hsla(355, 100%, 93%, 1) 0px, transparent 50%),
+    radial-gradient(at 61% 79%, hsla(340, 100%, 76%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(22, 100%, 77%, 1) 0px, transparent 50%),
+    radial-gradient(at 80% 100%, hsla(242, 100%, 70%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(343, 100%, 76%, 1) 0px, transparent 50%);
+  background-size: cover;
+`;
+
 const FindBloodTitle = styled(Typography)`
   font-family: "Montserrat";
   font-style: normal;
@@ -27,7 +43,7 @@ const FindBloodTitle = styled(Typography)`
   line-height: 44px;
   text-align: center;
   text-transform: uppercase;
-  color: #000000;
+  color: #ffffff;
   padding: 20px 0;
 `;
 const FindBloodSubTitle = styled(Typography)`
@@ -37,7 +53,7 @@ const FindBloodSubTitle = styled(Typography)`
   font-size: 20px;
   line-height: 26px;
   text-align: start;
-  color: #000000;
+  color: #ffffff;
   padding-bottom: 10px;
 `;
 
@@ -106,7 +122,7 @@ const FindBloodLanding = () => {
     }
   };
   return (
-    <Box
+    <FindBloodContainer
       sx={{
         minHeight: "90vh",
         mb: 2,
@@ -119,11 +135,12 @@ const FindBloodLanding = () => {
         <Box>
           <FindBloodSubTitle variant="h5">
             Seeking Life-Saving Blood: Discover Blood Matches Based on{" "}
-            <font color="red">Blood Group</font> and{" "}
-            <font color="red">Location Filter</font>. Kindly approach potential
-            donors with respect, understanding their decision if they are unable
-            to donate. Together, let&apos;s foster a culture of gratitude and
-            appreciation for all donors in our mission to save lives.
+            <font color="black">Blood Group</font> and{" "}
+            <font color="black">Location Filter</font>. Kindly approach
+            potential donors with respect, understanding their decision if they
+            are unable to donate. Together, let&apos;s foster a culture of
+            gratitude and appreciation for all donors in our mission to save
+            lives.
           </FindBloodSubTitle>
         </Box>
         <Box component="form" onSubmit={handleSubmit(onSubmit)}>
@@ -250,7 +267,7 @@ const FindBloodLanding = () => {
         </Stack>
         <Footer />
       </Container>
-    </Box>
+    </FindBloodContainer>
   );
 };
 

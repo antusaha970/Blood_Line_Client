@@ -19,7 +19,7 @@ const SubTitle = styled(Typography)`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   text-align: left;
   color: #000000;
