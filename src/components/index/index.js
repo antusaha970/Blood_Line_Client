@@ -8,6 +8,7 @@ export { default as Loader3 } from "../shared/Loader3/Loader3";
 export { default as Header } from "../Pages/HomePage/Header/Header";
 export { default as CallToAction } from "../Pages/HomePage/CallToAction/CallToAction";
 export { default as OurMission } from "../Pages/HomePage/OurMission/OurMission";
+export { default as Preview } from "../Pages/HomePage/Preview/Preview";
 export { default as Register } from "../Pages/RegisterPage/Register/Register";
 export { default as AdditionalInfo } from "../Pages/AdditionalInfo/AdditionalInfo";
 export { default as UserProfile } from "../Pages/UserProfile/UserProfile";
