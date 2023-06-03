@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 import avatar from "../../../../assets/avatar.jpg";
 import { toast } from "react-toastify";
 import { Email, Phone, Place, Bloodtype } from "@mui/icons-material";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
 const Name = styled(Typography)`
   font-family: "Montserrat";
   font-style: normal;
@@ -79,8 +82,27 @@ const BloodCard = ({ donor }) => {
       window.open(mailtoLink);
     }
   };
+  const boxVariant = {
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+    hidden: { opacity: 0, scale: 0 },
+  };
+  const control = useAnimation();
+  const [ref, inView] = useInView();
+  useEffect(() => {
+    if (inView) {
+      control.start("visible");
+    } else {
+      control.start("hidden");
+    }
+  }, [control, inView]);
   return (
-    <>
+    <motion.div
+      className="box"
+      ref={ref}
+      variants={boxVariant}
+      initial="hidden"
+      animate={control}
+    >
       <CardContainer
         sx={{
           width: { md: "320px", xs: "90%" },
@@ -123,7 +145,7 @@ const BloodCard = ({ donor }) => {
         <Button onClick={handleCopyNumber}>Call</Button>
         <Button onClick={handleCopyEmail}>Email</Button>
       </CardContainer>
-    </>
+    </motion.div>
   );
 };
 
