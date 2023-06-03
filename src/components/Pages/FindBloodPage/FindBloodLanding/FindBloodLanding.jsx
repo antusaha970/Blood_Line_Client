@@ -135,12 +135,9 @@ const FindBloodLanding = () => {
         <Box>
           <FindBloodSubTitle variant="h5">
             Seeking Life-Saving Blood: Discover Blood Matches Based on{" "}
-            <font color="black">Blood Group</font> and{" "}
-            <font color="black">Location Filter</font>. Kindly approach
-            potential donors with respect, understanding their decision if they
-            are unable to donate. Together, let&apos;s foster a culture of
-            gratitude and appreciation for all donors in our mission to save
-            lives.
+            <font color="black">Blood Group</font>. Kindly approach potential
+            donors with respect, understanding their decision if they are unable
+            to donate.
           </FindBloodSubTitle>
         </Box>
         <Box component="form" onSubmit={handleSubmit(onSubmit)}>
